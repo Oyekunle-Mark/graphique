@@ -9,12 +9,13 @@
 - Undirected edge is the same as bi-directional edge
 - Cyclic vs. Acyclic
 - Dense vs. Sparse
-    - Subway map (sparse)
-    - Flight map (dense)
+  - Subway map (sparse)
+  - Flight map (dense)
 - Weighted vs. Unweighted
-    - Heavy traffic vs. light traffic
+  - Heavy traffic vs. light traffic
 
 ## Adjacency List & Adjacency Matrix
+
 The two most common ways to represent graphs in code are *adjacency lists* and *adjacency matrices*, each with its own strengths and weaknesses. When deciding on a graph implementation, it's important to understand the type of data and operations you will be using.
 
 ![Different ways to represent a graph](img/representations.png)
@@ -26,7 +27,7 @@ The two most common ways to represent graphs in code are *adjacency lists* and *
 One way of representing connections between verts is with a matrix that
 records `1` for a connection or `0` for no connection.
 
-```
+```py
     A B C D
   +--------
 A | 0 0 1 1
@@ -42,7 +43,7 @@ In the above example B connects to C, but C does not connect back to B.
 Another way is to store a list of verts that a particular vert connects
 to.
 
-```
+```py
 A -> [ C D ]
 B -> [ C ]
 C -> [ A D ]
@@ -54,10 +55,13 @@ This is the recommended approach for our graph projects.
 ## BFT
 
 ### Synopsis
+
 We can use BFT to traverse a graph, starting at levels closest to the root and finishing at those furthest away.
+
 - Good to use when solving *Shortest Path* problems and other scenarios where you know that the *solution is not far from the root*
 
 ### Algorithm
+
 1. Begin at the starting Vertex (s)
 2. Explore Vertex
     a. while +1 unscheduled vertices adjacent to current vertex
@@ -67,6 +71,7 @@ We can use BFT to traverse a graph, starting at levels closest to the root and f
 ## DFT
 
 ### Synopsis
+
 Algorithm used to search a graph. Explores all possible paths to find one with the smallest weight, *traversing down a branch before traversing accross nodes at the same level as the root node*. It never revisits nodes.
 
 We can use DFT to *search each branch to it's deepest level* before exploring another branch.
@@ -74,6 +79,7 @@ We can use DFT to *search each branch to it's deepest level* before exploring an
 Good to use when solving a problem where you know the *solution is very far from the root*
 
 ### Algorithm
+
 1. Begin at the starting Vertex (s)
 2. Explore Vertex using a *stack*
     a. If unexplored, adjacent vertex
@@ -82,7 +88,7 @@ Good to use when solving a problem where you know the *solution is very far from
 
 ## Graph traversal
 
-```
+```py
     q = []
     visited = {}
 
@@ -140,7 +146,7 @@ Good to use when solving a problem where you know the *solution is very far from
 
     # we will be skipping 4, 6 and 7 and moving to 5
 
-    
+
     # Dequeue first vertex
     q = []
     visited = {1, 2, 3, 4}
