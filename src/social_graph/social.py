@@ -2,10 +2,11 @@ import random
 import math
 import time
 
+
 class Queue:
     def __init__(self):
         self.storage = []
-    
+
     def enqueue(self, value):
         self.storage.append(value)
 
@@ -19,17 +20,17 @@ class Queue:
         return len(self.storage)
 
 
-
 class User:
     def __init__(self, name):
         self.name = name
+
 
 class SocialGraph:
     def __init__(self):
         self.lastID = 0
         self.users = {}
         self.friendships = {}
-        
+
     def addFriendship(self, userID, friendID):
         """
         Creates a bi-directional friendship
@@ -42,7 +43,7 @@ class SocialGraph:
             self.friendships[userID].add(friendID)
             self.friendships[friendID].add(userID)
             return True
-            
+
     def addUser(self, name):
         """
         Create a new user with a sequential integer ID
@@ -50,7 +51,7 @@ class SocialGraph:
         self.lastID += 1
         self.users[self.lastID] = User(name)
         self.friendships[self.lastID] = set()
-        
+
     def populateGraph(self, numUsers, avgFriendships):
         """
         Takes a number of users and an average number of friendships
@@ -69,7 +70,7 @@ class SocialGraph:
         for i in range(0, numUsers):
             # add user to the graph
             self.addUser(f"User {i}")
-        
+
         # create friendships
 
         # Generate all friendship combinations
@@ -77,18 +78,18 @@ class SocialGraph:
         possibleFriendships = []
 
         # avoid duplicates ensuring that the first number is smaller than the second
-        
+
         # loop over userID in users
         for userID in self.users:
             # loop over friend id in a range from user id + 1 to the lastID +1
             for friendID in range(userID + 1, self.lastID + 1):
                 # append the tuple of (user id , friend id) to the possible friendships list
                 possibleFriendships.append((userID, friendID))
-        
+
         # shuffle the possible friendships using the random.suffle method
         random.shuffle(possibleFriendships)
 
-        # create afriendships of the first x ammount of pairs in the list   
+        # create afriendships of the first x ammount of pairs in the list
         # X determined by the formula: numusers * avgFriendships // 2
         # we need to divide by to as each createFriendship adds 2 friendships
         # loop over a range to numUsers * avgFriendships // 2
@@ -136,7 +137,6 @@ class SocialGraph:
         # print collision
         print(f"COLLISIONS: {collisions}")
 
-
     def getAllSocialPaths(self, userID):
         """
         Takes a user's userID as an argument
@@ -156,7 +156,7 @@ class SocialGraph:
             path = q.dequeue()
             # set new user id to the last item in path
             newUserID = path[-1]
-            
+
             # check if the new user id is not in the visited structure
             if newUserID not in visited:
                 # set the new user ids path in visited
@@ -172,7 +172,7 @@ class SocialGraph:
                         new_path.append(friendID)
                         # enqueue the copy of the path
                         q.enqueue(new_path)
-       
+
         # return the visited data structure
         return visited
 
@@ -183,7 +183,7 @@ if __name__ == '__main__':
     numUsers = 2000
     avgFriendships = 190
     # sg.populateGraph(numUsers, avgFriendships)
-    
+
     sg.populateGraphLinear(numUsers, avgFriendships)
     end_time = time.time()
     print(f"Linear runtime: {end_time - start_time} seconds")
@@ -192,9 +192,6 @@ if __name__ == '__main__':
     sg.populateGraph(numUsers, avgFriendships)
     end_time = time.time()
     print(f"Quadratic runtime: {end_time - start_time} seconds")
-
-
-
 
     # connections = sg.getAllSocialPaths(1)
     # print(f"Users in extended social network: {len(connections) - 1}")
