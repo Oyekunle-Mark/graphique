@@ -9,9 +9,10 @@ f.close()
 
 word_set = set()
 for word in words:
-      word_set.add(word.lower())
+    word_set.add(word.lower())
 
-letters = ['a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z']
+letters = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l',
+           'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z']
 
 # Utility function (Helper Function)
 """
@@ -20,6 +21,8 @@ letters = ['a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','
     using a helper function to get the neighbors 
     and to work on the letters
 """
+
+
 def get_neighbors(word):
     # make an empty list for neighbors
     neighbors = []
@@ -35,7 +38,7 @@ def get_neighbors(word):
             temp_word[i] = letter
             # join the temporary word together
             new_word = "".join(temp_word)
-            # check if the new word is not the initial word 
+            # check if the new word is not the initial word
             # and the new word is in the word set
             if new_word != word and new_word in word_set:
                 # append the new word to the neighbors list
@@ -43,8 +46,10 @@ def get_neighbors(word):
     # return the neighbors list
     return neighbors
 
-# implement the function 
+# implement the function
 # along with any helper functions you need
+
+
 def find_word_ladder(beginWord, endWord):
     # create a queue
     q = Queue()
@@ -74,7 +79,6 @@ def find_word_ladder(beginWord, endWord):
                 new_path.append(next_vert)
                 # enqueue the new path
                 q.enqueue(new_path)
-
 
 
 if __name__ == '__main__':
