@@ -1,4 +1,3 @@
-
 from util import Stack, Queue
 # lets code a dft
 """
@@ -77,5 +76,3 @@ class Graph:
                 # then add all of it's neighbors to the top of the stack
                 for next_vertex in self.vertices[v]:
                     s.push(next_vertex)
-
-    
